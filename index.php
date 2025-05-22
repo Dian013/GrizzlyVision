@@ -16,12 +16,15 @@ try {
 
     switch ($route) {
         case '' :
-            require 'src/View/view/indexView.php';
+            require 'src/View/indexView.php';
             break;
-        case 'register':
+        case 'profil':
+            //Si connecter 
+            break;
+        case 'sign_up':
             (new RegisterController)->register();
             break;
-        case 'login':
+        case 'already_has_account':
             (new LoginController)->login();
             break;
         default:

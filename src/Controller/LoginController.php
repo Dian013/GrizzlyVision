@@ -27,7 +27,7 @@ class LoginController {
                 return $this->render(['error' => 'Accès refusé']);
             }
         }  
-        catch (Exception $e) {
+        catch (\Exception $e) {
             echo 'error : '.$e->getMessage();
         }
     }

@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GrizzlyVision - Accueil</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/index.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
 </head>
@@ -16,7 +16,7 @@
 
     <header>
         <div id="top_header">
-            <a href="/index.html" id="logo_header">
+            <a href="" id="logo_header">
                 <img src="assets/image/logo/GrizzlyVision_logo.svg" alt="Logo Grizzly Vision en haut de page"
                     title="Logo Grizzly Vision">
             </a>
@@ -28,11 +28,10 @@
                 <button id="filter_button"><i class="fa-solid fa-align-left"></i></button>
             </nav>
             <div id="connect">
-                <a href="/html/profil.html" id="connect_icon"><i class=" fa-solid fa-user"></i></a>
-                <a href="/html/already_has_account.html" id="log_in">
+                <a href="/already_has_account" id="log_in">
                     Se connecter
                 </a>
-                <a href="/html/sign_up.html" id="sign_up">
+                <a href="/sign_up" id="sign_up">
                     S'inscrire
                 </a>
             </div>

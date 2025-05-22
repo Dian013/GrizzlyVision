@@ -36,6 +36,6 @@ class UserRepository
         $stmt = $this->connexion->getConnexion()->prepare('SELECT * FROM users WHERE email = :email');
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-        return $stmt;
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 }
