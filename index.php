@@ -18,7 +18,7 @@ try {
             require 'src/View/indexView.php';
             break;
         case 'profil':
-            //Si connecter 
+            require 'src/View/html/profil.php';
             break;
         case 'sign_up':
             (new RegisterController)->register();

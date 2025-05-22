@@ -7,31 +7,37 @@ use App\Model\UserRepository;
 class LoginController {
     public function Login()
     {
-        if (isset($_POST['email'])
+        if (isset($_POST['username'])
         && isset($_POST['password'])) {
-        $email_login = $_POST['login'];
+    
+        $username_login = $_POST['username'];
         $password_login = $_POST['password'];
 
         try {
-            $user = (new UserRepository())->searchUser($email_login);
+            $user = (new UserRepository())->searchUser($username_login);
 
             $email_db = $user['email'];
             $password_db = $user['password'];
+
+            var_dump($user);
+            var_dump($username_login);
+            var_dump($password_login);
     
-            if ($email_login == $email_db && password_verify($password_login, $password_db)) {
+            if ($username_login == $email_db && password_verify($password_login, $password_db)) {
                 session_start();
                 //$_SESSION['user'] = $username;
-                header('Location: index.php?action=session');
+                header('Location: /GrizzlyVision/profil');
                 exit;
             } else {
-                return $this->render(['error' => 'Accès refusé']);
+                echo "Accès refusé";
+                $message = "Accès refusé";
             }
         }  
         catch (\Exception $e) {
             echo 'error : '.$e->getMessage();
         }
     }
-    require 'view/login-view.php';
+    require "src\View\html\already_has_account.php";
     }
 
     private function render($data = []) 

@@ -13,12 +13,13 @@ class RegisterController {
                 $phone = $_POST['phone'];
                 $email = $_POST['email'];
                 $password = $_POST['password']; 
-            
+                
+                $password_hashed = password_hash($password, PASSWORD_DEFAULT);
                     (new UserRepository())->registerUser( 
                         $username, 
                         $phone, 
                         $email,
-                        $password
+                        $password_hashed
                     );
                     $message = "Inscription réussi !";
             } 
@@ -28,20 +29,17 @@ class RegisterController {
 
     private function isFormComplete(){
         return isset(
-            $_POST['lastname'],
-            $_POST['firstname'],
+            $_POST['username'],
             $_POST['phone'],
-            $_POST['postal_code'],
-            $_POST['city'],
             $_POST['email'],
-            $_POST['password'],
-            $_POST['confirm_password']
+            $_POST['password']
         );
     }
 
 
     private function isUserExists(string $email){
-        $dbEmail = (new UserRepository())->searchUser($email);
+        $user = (new UserRepository())->searchUser($email);
+        $dbEmail = $user['email'];
         return $dbEmail === $email;
     }
 
