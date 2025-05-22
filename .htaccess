@@ -1,0 +1,13 @@
+# Redirige toutes les requêtes vers index.php, utile pour les routes "propres"
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]  
+#QSA Si l’URL contient déjà une query string (comme ?id=5), elle sera conservée. EXEMPLE : /produit?id=5 → index.php?id=5
+
+#
+#
+#
+
+# Forcer le charset UTF-8
+AddDefaultCharset UTF-8

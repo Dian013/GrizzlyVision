@@ -1,0 +1,15 @@
+{
+    "name": "mavro/grizzly-vision",
+    "autoload": {
+        "psr-4": {
+            "Mavro\\GrizzlyVision\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dian",
+            "email": "mavrodiev.dian@yahoo.fr"
+        }
+    ],
+    "require": {}
+}
