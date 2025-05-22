@@ -37,7 +37,7 @@ class RegisterController {
                 }
             } 
         } 
-        require "src/View/view/auth/register_view.php";
+        require "src\View\html\sign_up.php";
     }
 
     private function isFormComplete(){

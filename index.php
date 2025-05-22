@@ -11,7 +11,6 @@ use App\Controller\RegisterController;
 try {
     // Récupère l'URI sans query string (ex: /register)
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
     $route = trim(str_replace(BASE_URL, '', $uri), '/');
 
     switch ($route) {

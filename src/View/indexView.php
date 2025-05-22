@@ -28,10 +28,10 @@
                 <button id="filter_button"><i class="fa-solid fa-align-left"></i></button>
             </nav>
             <div id="connect">
-                <a href="/already_has_account" id="log_in">
+                <a href="/GrizzlyVision/already_has_account" id="log_in">
                     Se connecter
                 </a>
-                <a href="/sign_up" id="sign_up">
+                <a href="/GrizzlyVision/sign_up" id="sign_up">
                     S'inscrire
                 </a>
             </div>
