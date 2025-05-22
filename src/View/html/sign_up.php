@@ -17,13 +17,13 @@
     <section id="inscription">
         <h2>Inscription</h2>
         <a href="already_has_account.html" id="deja-inscrit_button">Déjà inscrit</a>
-        <form action="" id="formulaire">
+        <form method="post" action="" id="formulaire">
             <input type="text" placeholder="Nom d'utilisateur">
             <input type="text" placeholder="Numéro de téléphone">
             <input type="text" placeholder="Adresse e-mail">
             <input type="text" placeholder="Mot de passe">
+            <input type="submit" id="signup_sinscrir_button" value="S'inscrire"></input>
         </form>
-        <button id="signup_sinscrir_button">S'inscrire</button>
     </section>
 </body>
 </html>

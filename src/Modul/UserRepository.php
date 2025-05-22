@@ -14,17 +14,14 @@ class UserRepository
         $this->connexion = new DatabaseConnexion();
     }
 
-    function registerUser($lastname, $firstname, $phone, $postal_code, $city, $email, $password)
+    function registerUser($username, $phone, $email, $password)
     {
         $stmt = $this->connexion->getConnexion()->prepare(
-            'INSERT INTO users (lastname, firstname, phone, postal_code, city, email, password) 
-             VALUES (:lastname, :firstname, :phone, :postal_code, :city, :email, :password)'
+            'INSERT INTO users (username, phone, email, password) 
+             VALUES (:username, :phone, :email, :password)'
         );
-        $stmt->bindParam(':lastname', $lastname);
-        $stmt->bindParam(':firstname', $firstname);
+        $stmt->bindParam(':username', $username);
         $stmt->bindParam(':phone', $phone);
-        $stmt->bindParam(':postal_code', $postal_code);
-        $stmt->bindParam(':city', $city);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $password);
         $stmt->execute();
@@ -36,6 +33,7 @@ class UserRepository
         $stmt = $this->connexion->getConnexion()->prepare('SELECT * FROM users WHERE email = :email');
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result ? $result['email'] : null; 
     }
 }

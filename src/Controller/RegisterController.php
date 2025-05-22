@@ -9,32 +9,18 @@ class RegisterController {
         $message = "";
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             if($this->isFormComplete()){
-                $lastname = $_POST['lastname'];
-                $firstname = $_POST['firstname'];
+                $username = $_POST['username'];
                 $phone = $_POST['phone'];
-                $postal_code = $_POST['postal_code'];
-                $city = $_POST['city'];
                 $email = $_POST['email'];
-                $password = $_POST['password'];
-                $confirm_password = $_POST['confirm_password'];  
+                $password = $_POST['password']; 
             
-                if ($this->isUserExists($email)){
-                    $message = "L'utilisateur existe déjà";
-                } elseif ($password == $confirm_password) {
-                    $password_hashed = password_hash($password, PASSWORD_DEFAULT);
                     (new UserRepository())->registerUser( 
-                        $lastname, 
-                        $firstname, 
+                        $username, 
                         $phone, 
-                        $postal_code,
-                        $city,
                         $email,
-                        $password_hashed
+                        $password
                     );
                     $message = "Inscription réussi !";
-                } else {
-                    $message = "Les mots de passe ne correspondent pas";
-                }
             } 
         } 
         require "src\View\html\sign_up.php";

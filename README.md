@@ -39,5 +39,5 @@
 • Image/Vidéo : <i class="fa-solid fa-photo-film"></i>
 
 
-API VIDEO LOIC (peut etre chercher voir si on trouve un meilleur avec plus de vidéo):
+API VIDEO LOIC:
 https://gist.githubusercontent.com/poudyalanil/ca84582cbeb4fc123a13290a586da925/raw/14a27bd0bcd0cd323b35ad79cf3b493dddf6216b/videos.json
