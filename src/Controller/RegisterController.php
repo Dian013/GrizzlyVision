@@ -21,8 +21,9 @@ class RegisterController {
                         $email,
                         $password_hashed
                     );
-                    $message = "Inscription réussi !";
+                    header('Location: redirect_page.php');
             } 
+            $message = "Formulaire incomplet";
         } 
         require "src\View\html\sign_up.php";
     }
