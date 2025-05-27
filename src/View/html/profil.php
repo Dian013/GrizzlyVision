@@ -12,7 +12,7 @@
 
 <header>
     <a id="connect_icon"><i class=" fa-solid fa-user"></i></a>
-    <span>Pseudo</span>
+    <span><?= $_SESSION['user'] ?></span>
     <a href="modify_profil.html" id="modify_profil">Modifier profil</a>
 </header>
 <body>

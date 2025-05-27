@@ -27,11 +27,11 @@ class UserRepository
         $stmt->execute();
     }
 
-    function searchUser($email)
+    function searchUser($username)
     {
         // Peut etre va falloir enlever l'etoiles à un moment parceque ça pourrait renvoyer tte les données, même les mots de passe
-        $stmt = $this->connexion->getConnexion()->prepare('SELECT * FROM user WHERE email = :email');
-        $stmt->bindParam(':email', $email);
+        $stmt = $this->connexion->getConnexion()->prepare('SELECT * FROM user WHERE username = :username');
+        $stmt->bindParam(':username', $username);
         $stmt->execute();
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
         return $result; 

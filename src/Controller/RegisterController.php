@@ -4,31 +4,35 @@ namespace App\Controller;
 
 use App\Model\UserRepository;
 
-class RegisterController {
-    public function register() {
+class RegisterController
+{
+    public function register()
+    {
         $message = "";
-        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-            if($this->isFormComplete()){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($this->isFormComplete()) {
                 $username = $_POST['username'];
                 $phone = $_POST['phone'];
                 $email = $_POST['email'];
-                $password = $_POST['password']; 
-                
+                $password = $_POST['password'];
+
                 $password_hashed = password_hash($password, PASSWORD_DEFAULT);
-                    (new UserRepository())->registerUser( 
-                        $username, 
-                        $phone, 
-                        $email,
-                        $password_hashed
-                    );
-                    header('Location: redirect_page.php');
-            } 
+                (new UserRepository())->registerUser(
+                    $username,
+                    $phone,
+                    $email,
+                    $password_hashed
+                );
+                $_SESSION['user'] = $username;
+                header('Location: redirect_page');
+            }
             $message = "Formulaire incomplet";
-        } 
+        }
         require "src\View\html\sign_up.php";
     }
 
-    private function isFormComplete(){
+    private function isFormComplete()
+    {
         return isset(
             $_POST['username'],
             $_POST['phone'],
@@ -38,7 +42,8 @@ class RegisterController {
     }
 
 
-    private function isUserExists(string $email){
+    private function isUserExists(string $email)
+    {
         $user = (new UserRepository())->searchUser($email);
         $dbEmail = $user['email'];
         return $dbEmail === $email;
@@ -55,12 +60,13 @@ class RegisterController {
      * @return string The sanitized string safe for HTML output.
      * @access public
      */
-    private function sanitize(string $input): string {
+    private function sanitize(string $input): string
+    {
         $input = trim($input);
         $input = strip_tags($input);
         $input = htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
-    return $input;
-}
+        return $input;
+    }
 }
 
 

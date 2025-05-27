@@ -17,7 +17,7 @@
     <header>
         <div id="top_header">
             <a href="" id="logo_header">
-                <img src="assets/image/logo/GrizzlyVision_logo.svg" alt="Logo Grizzly Vision en haut de page"
+                <img src="public/assets/image/logo/GrizzlyVision_logo.svg" alt="Logo Grizzly Vision en haut de page"
                     title="Logo Grizzly Vision">
             </a>
             <nav>

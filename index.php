@@ -1,4 +1,6 @@
 <?php
+session_start(); 
+
 define('ROOT', dirname(__DIR__) . '/');
 define('BASE_URL', rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'));
 
@@ -15,6 +17,7 @@ try {
 
     switch ($route) {
         case '' :
+        case 'welcome':
             require 'src/View/indexView.php';
             break;
         case 'profil':
@@ -25,7 +28,14 @@ try {
             break;
         case 'already_has_account':
             (new LoginController)->login();
-            break;
+            break;        
+        case 'redirect_page':
+            if (isset($_SESSION['user'])) {
+                require 'src\View\html\redirect_page.php';
+                break;
+            } else {
+                echo "erreur";
+            }
         default:
             http_response_code(404);
             echo 'Page non trouvée';

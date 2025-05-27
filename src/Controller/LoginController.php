@@ -4,45 +4,70 @@ namespace App\Controller;
 
 use App\Model\UserRepository;
 
-class LoginController {
-    public function Login()
+class LoginController
+{
+    public function login()
     {
-        if (isset($_POST['username'])
-        && isset($_POST['password'])) {
-    
-        $username_login = $_POST['username'];
-        $password_login = $_POST['password'];
+        $errors = [
+            'username' => '', 
+            'password' => ''
+        ];
+        $message = '';
 
-        try {
-            $user = (new UserRepository())->searchUser($username_login);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = $_SERVER['REQUEST_METHOD'];
 
-            $email_db = $user['email'];
-            $password_db = $user['password'];
+            $form_data = $_POST;
+            $errors = $this->validateLoginForm($form_data);
 
-            var_dump($user);
-            var_dump($username_login);
-            var_dump($password_login);
-    
-            if ($username_login == $email_db && password_verify($password_login, $password_db)) {
-                session_start();
-                //$_SESSION['user'] = $username;
-                header('Location: /GrizzlyVision/profil');
-                exit;
-            } else {
-                echo "Accès refusé";
-                $message = "Accès refusé";
-            }
-        }  
-        catch (\Exception $e) {
-            echo 'error : '.$e->getMessage();
+            if ($errors == ['username' => '', 'password' => '']) {
+
+                $user = (new UserRepository())->searchUser($form_data['username']);
+
+                $email_db = $user['username'];
+                $password_db = $user['password'];
+
+
+                if ($form_data['username'] == $email_db && password_verify($form_data['password'], $password_db)) {
+                    $_SESSION['user'] = $form_data['username'];
+                    header('Location: /GrizzlyVision/profil');
+                    exit;
+                } else {
+                    $message = "Identifiants incorrects.";
+                }
+            } 
+        } else {
+            $title = $_SERVER['REQUEST_METHOD'];
         }
-    }
-    require "src\View\html\already_has_account.php";
+        require "src/View/html/already_has_account.php";
     }
 
-    private function render($data = []) 
-    {  
-        $message = extract($data); // Extrait les variables pour les rendre accessibles dans la vue //TODO
-        require $_SERVER['DOCUMENT_ROOT'] . '/CODE_PP/view/auth/login_view.php'; //$_SERVER[''] me permet de commencer le chemin par le nom du serveur où se trouvera mon projet, même si je change de serveur, tant que je garde code_pp en nom de projet
+    private function validateLoginForm($data)
+    {
+        $errors = [];
+
+        $username = trim($data['username'] ?? '');
+        $password = $data['password'] ?? '';
+
+        if (empty($username)) {
+            $errors['username'] = "Le nom d'utilisateur est requis.";
+        } else {
+            $errors['username'] = "";
+        }
+
+        if (empty($password)) { //||  strlen($password) < 6) {
+            $errors['password'] = "Le mot de passe doit contenir au moins 6 caractères.";
+        } else {
+            $errors['password'] = "";
+        }
+
+        return $errors;
+    }
+
+
+    public function logout()
+    {
+        session_destroy();
+        header('Location: index.php?page=login');
     }
 }
